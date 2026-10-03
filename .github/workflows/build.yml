@@ -1,4 +1,4 @@
-name: Compilar Infinite Soil
+name: Compilar Plantacao IF Mystical
 
 on:
   push:
@@ -23,11 +23,56 @@ jobs:
         with:
           gradle-version: 8.1.1
 
-      - name: Preparar projeto
+      - name: Criar configuração Gradle
         run: |
-          echo "Minecraft: 1.20.1"
-          echo "Forge: 47.3.0"
-          echo "Mod: Infinite Soil"
+          cat > settings.gradle <<'EOF'
+          pluginManagement {
+              repositories {
+                  gradlePluginPortal()
+                  maven { url = 'https://maven.minecraftforge.net/' }
+              }
+          }
+
+          rootProject.name = 'plantacaoifmystical10000'
+          EOF
+
+          cat > build.gradle <<'EOF'
+          plugins {
+              id 'eclipse'
+              id 'idea'
+              id 'maven-publish'
+              id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+          }
+
+          version = '1.0.0'
+          group = 'com.plantacaoifmystical10000'
+
+          base {
+              archivesName = 'plantacaoifmystical10000'
+          }
+
+          java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+          minecraft {
+              mappings channel: 'official', version: '1.20.1'
+          }
+
+          repositories {
+              mavenCentral()
+          }
+
+          dependencies {
+              minecraft 'net.minecraftforge:forge:1.20.1-47.3.0'
+          }
+
+          tasks.named('jar', Jar).configure {
+              finalizedBy 'reobfJar'
+          }
+
+          tasks.withType(JavaCompile).configureEach {
+              options.encoding = 'UTF-8'
+          }
+          EOF
 
       - name: Compilar mod
         run: |
@@ -41,5 +86,5 @@ jobs:
       - name: Enviar JAR
         uses: actions/upload-artifact@v4
         with:
-          name: Infinite-Soil-JAR
+          name: plantacaoifmystical10000-JAR
           path: out/*.jar
