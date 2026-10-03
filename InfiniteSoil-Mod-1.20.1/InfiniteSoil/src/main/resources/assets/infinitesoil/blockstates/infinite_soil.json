@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "moisture=0": { "model": "infinitesoil:block/infinite_soil" },
+    "moisture=1": { "model": "infinitesoil:block/infinite_soil" },
+    "moisture=2": { "model": "infinitesoil:block/infinite_soil" },
+    "moisture=3": { "model": "infinitesoil:block/infinite_soil" },
+    "moisture=4": { "model": "infinitesoil:block/infinite_soil" },
+    "moisture=5": { "model": "infinitesoil:block/infinite_soil" },
+    "moisture=6": { "model": "infinitesoil:block/infinite_soil" },
+    "moisture=7": { "model": "infinitesoil:block/infinite_soil" }
+  }
+}

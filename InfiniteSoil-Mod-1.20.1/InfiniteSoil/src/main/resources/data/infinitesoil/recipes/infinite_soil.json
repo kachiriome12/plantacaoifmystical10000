@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DDD",
+    "D#D",
+    "DDD"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:dirt"
+    },
+    "#": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "infinitesoil:infinite_soil",
+    "count": 1
+  }
+}
